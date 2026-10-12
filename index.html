@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homebrew Water Chemistry Planner</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen p-4">
+<div class="max-w-4xl mx-auto">
+  <h1 class="text-2xl font-bold mb-1 text-amber-400">Homebrew Water Chemistry Planner</h1>
+  <p class="text-sm text-gray-400 mb-5">Enter source water, add mineral salts, and match your target beer style profile.</p>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+    <!-- Source Water -->
+    <div class="bg-gray-800 rounded-xl p-5">
+      <h2 class="text-lg font-semibold mb-3 text-amber-300">Source Water (mg/L)</h2>
+      <div class="grid grid-cols-2 gap-3">
+        <div><label for="srcCa" class="block text-xs text-gray-400 mb-1">Ca²⁺ (Calcium)</label>
+          <input id="srcCa" type="number" value="50" min="0" class="w-full bg-gray-700 border border-gray-600 rounded px-2 py-1 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none"></div>
+        <div><label for="srcMg" class="block text-xs text-gray-400 mb-1">Mg²⁺ (Magnesium)</label>
+          <input id="srcMg" type="number" value="5" min="0" class="w-full bg-gray-700 border border-gray-600 rounded px-2 py-1 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none"></div>
+        <div><label for="srcNa" class="block text-xs text-gray-400 mb-1">Na⁺ (Sodium)</label>
+          <input id="srcNa" type="number" value="10" min="0" class="w-full bg-gray-700 border border-gray-600 rounded px-2 py-1 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none"></div>
+        <div><label for="srcCl" class="block text-xs text-gray-400 mb-1">Cl⁻ (Chloride)</label>
+          <input id="srcCl" type="number" value="20" min="0" class="w-full bg-gray-700 border border-gray-600 rounded px-2 py-1 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none"></div>
+        <div><label for="srcSO4" class="block text-xs text-gray-400 mb-1">SO₄²⁻ (Sulfate)</label>
+          <input id="srcSO4" type="number" value="25" min="0" class="w-full bg-gray-700 border border-gray-600 rounded px-2 py-1 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none"></div>
+        <div><label for="srcHCO3" class="block text-xs text-gray-400 mb-1">HCO₃⁻ (Bicarbonate)</label>
+          <input id="srcHCO3" type="number" value="100" min="0" class="w-full bg-gray-700 border border-gray-600 rounded px-2 py-1 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none"></div>
+      </div>
+      <div class="mt-3">
+        <label for="volL" class="block text-xs text-gray-400 mb-1">Batch Volume (L)</label>
+        <input id="volL" type="number" value="20" min="1" class="w-32 bg-gray-700 border border-gray-600 rounded px-2 py-1 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
+      </div>
+    </div>
+
+    <!-- Mineral Additions -->
+    <div class="bg-gray-800 rounded-xl p-5">
+      <h2 class="text-lg font-semibold mb-3 text-amber-300">Mineral Additions (grams)</h2>
+      <div class="space-y-3">
+        <div class="flex items-center gap-2">
+          <label for="addGypsum" class="text-sm text-gray-300 w-44">Gypsum (CaSO₄)</label>
+          <input id="addGypsum" type="number" value="0" min="0" step="0.1"
+            class="w-24 bg-gray-700 border border-gray-600 rounded px-2 py-1 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
+          <span class="text-xs text-gray-500">g</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <label for="addCaCl2" class="text-sm text-gray-300 w-44">Calcium Chloride (CaCl₂)</label>
+          <input id="addCaCl2" type="number" value="0" min="0" step="0.1"
+            class="w-24 bg-gray-700 border border-gray-600 rounded px-2 py-1 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
+          <span class="text-xs text-gray-500">g</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <label for="addEpsom" class="text-sm text-gray-300 w-44">Epsom Salt (MgSO₄)</label>
+          <input id="addEpsom" type="number" value="0" min="0" step="0.1"
+            class="w-24 bg-gray-700 border border-gray-600 rounded px-2 py-1 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
+          <span class="text-xs text-gray-500">g</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <label for="addBakingSoda" class="text-sm text-gray-300 w-44">Baking Soda (NaHCO₃)</label>
+          <input id="addBakingSoda" type="number" value="0" min="0" step="0.1"
+            class="w-24 bg-gray-700 border border-gray-600 rounded px-2 py-1 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
+          <span class="text-xs text-gray-500">g</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <label for="addNaCl" class="text-sm text-gray-300 w-44">Table Salt (NaCl)</label>
+          <input id="addNaCl" type="number" value="0" min="0" step="0.1"
+            class="w-24 bg-gray-700 border border-gray-600 rounded px-2 py-1 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
+          <span class="text-xs text-gray-500">g</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Style selector -->
+  <div class="bg-gray-800 rounded-xl p-4 mt-5">
+    <label for="styleSelect" class="text-sm font-semibold text-amber-300 mr-3">Compare to Style:</label>
+    <select id="styleSelect" class="bg-gray-700 border border-gray-600 rounded px-3 py-1 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
+      <option value="pilsner">Pilsner</option>
+      <option value="paleale">Pale Ale</option>
+      <option value="ipa" selected>IPA</option>
+      <option value="stout">Stout</option>
+      <option value="hefeweizen">Hefeweizen</option>
+    </select>
+  </div>
+
+  <!-- Results -->
+  <div class="bg-gray-800 rounded-xl p-5 mt-5">
+    <h2 class="text-lg font-semibold mb-3 text-amber-300">Final Water Profile</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="text-gray-400 text-xs border-b border-gray-700">
+            <th class="text-left pb-2">Ion</th>
+            <th class="text-right pb-2">Final (mg/L)</th>
+            <th class="text-right pb-2">Target Min</th>
+            <th class="text-right pb-2">Target Max</th>
+            <th class="text-right pb-2">Status</th>
+          </tr>
+        </thead>
+        <tbody id="profileTable"></tbody>
+      </table>
+    </div>
+    <div id="ratioNote" class="mt-3 text-xs text-gray-400"></div>
+  </div>
+</div>
+
+<script>
+// Mineral contributions per gram per liter
+// Reference: homebrew water chemistry standard values
+const minerals = {
+  gypsum:     { Ca: 232.8, Mg: 0,     Na: 0,    Cl: 0,    SO4: 557.7, HCO3: 0 },    // CaSO4·2H2O
+  cacl2:      { Ca: 272.6, Mg: 0,     Na: 0,    Cl: 482.3, SO4: 0,    HCO3: 0 },
+  epsom:      { Ca: 0,     Mg: 98.6,  Na: 0,    Cl: 0,    SO4: 389.6, HCO3: 0 },
+  bakingsoda: { Ca: 0,     Mg: 0,     Na: 274.0, Cl: 0,   SO4: 0,    HCO3: 723.4 },
+  nacl:       { Ca: 0,     Mg: 0,     Na: 393.4, Cl: 606.8, SO4: 0,  HCO3: 0 },
+};
+
+// Target ranges [min, max] per style
+const styles = {
+  pilsner:    { Ca:[7,100],  Mg:[3,15],  Na:[2,50],  Cl:[5,50],  SO4:[5,50],  HCO3:[25,100] },
+  paleale:    { Ca:[50,150], Mg:[5,30],  Na:[5,50],  Cl:[50,150], SO4:[75,200], HCO3:[25,75] },
+  ipa:        { Ca:[75,200], Mg:[5,30],  Na:[5,50],  Cl:[25,75],  SO4:[150,350], HCO3:[0,75] },
+  stout:      { Ca:[50,150], Mg:[5,30],  Na:[10,80], Cl:[50,150], SO4:[25,100], HCO3:[100,300]},
+  hefeweizen: { Ca:[25,75],  Mg:[3,18],  Na:[5,20],  Cl:[5,50],  SO4:[5,30],  HCO3:[50,150] },
+};
+
+const ions = ['Ca','Mg','Na','Cl','SO4','HCO3'];
+const ionLabels = { Ca:'Ca²⁺', Mg:'Mg²⁺', Na:'Na⁺', Cl:'Cl⁻', SO4:'SO₄²⁻', HCO3:'HCO₃⁻' };
+
+const addInputs = {
+  gypsum: document.getElementById('addGypsum'),
+  cacl2:  document.getElementById('addCaCl2'),
+  epsom:  document.getElementById('addEpsom'),
+  bakingsoda: document.getElementById('addBakingSoda'),
+  nacl:   document.getElementById('addNaCl'),
+};
+
+const srcInputs = {
+  Ca: document.getElementById('srcCa'), Mg: document.getElementById('srcMg'),
+  Na: document.getElementById('srcNa'), Cl: document.getElementById('srcCl'),
+  SO4: document.getElementById('srcSO4'), HCO3: document.getElementById('srcHCO3'),
+};
+
+function calc() {
+  const vol = parseFloat(document.getElementById('volL').value) || 20;
+  const src = {};
+  ions.forEach(ion => { src[ion] = parseFloat(srcInputs[ion].value) || 0; });
+
+  const additions = {};
+  Object.keys(addInputs).forEach(k => { additions[k] = parseFloat(addInputs[k].value) || 0; });
+
+  const final = { ...src };
+  Object.entries(additions).forEach(([mineral, grams]) => {
+    ions.forEach(ion => {
+      final[ion] += (minerals[mineral][ion] * grams) / vol;
+    });
+  });
+
+  const style = document.getElementById('styleSelect').value;
+  const targets = styles[style];
+
+  const tbody = document.getElementById('profileTable');
+  tbody.innerHTML = '';
+  ions.forEach(ion => {
+    const val = final[ion];
+    const [lo, hi] = targets[ion];
+    const inRange = val >= lo && val <= hi;
+    const low = val < lo;
+    const status = inRange ? '✓ In range' : low ? '▼ Low' : '▲ High';
+    const statusColor = inRange ? 'text-green-400' : low ? 'text-blue-400' : 'text-red-400';
+
+    const tr = document.createElement('tr');
+    tr.className = 'border-b border-gray-700';
+    tr.innerHTML = `
+      <td class="py-2 font-medium text-gray-200">${ionLabels[ion]}</td>
+      <td class="py-2 text-right font-bold text-white">${val.toFixed(1)}</td>
+      <td class="py-2 text-right text-gray-400">${lo}</td>
+      <td class="py-2 text-right text-gray-400">${hi}</td>
+      <td class="py-2 text-right ${statusColor} font-semibold">${status}</td>`;
+    tbody.appendChild(tr);
+  });
+
+  const ratio = final['SO4'] > 0 ? (final['Cl'] / final['SO4']).toFixed(2) : '∞';
+  const ratioNote = document.getElementById('ratioNote');
+  ratioNote.textContent = `Cl⁻/SO₄²⁻ ratio: ${ratio}  (< 0.5 = hoppy/bitter | 0.5–1.5 = balanced | > 1.5 = malty/soft)`;
+}
+
+// Wire all inputs
+Object.values(srcInputs).forEach(el => el.addEventListener('input', calc));
+Object.values(addInputs).forEach(el => el.addEventListener('input', calc));
+document.getElementById('volL').addEventListener('input', calc);
+document.getElementById('styleSelect').addEventListener('change', calc);
+calc();
+</script>
+</body>
+</html>
